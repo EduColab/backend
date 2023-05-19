@@ -31,7 +31,7 @@ jobs:
     - run: npm run build-production 
 
     - name: Deploy to Stage
-        if: ${{ github.ref == 'refs/heads/stage' }}
+        if: github.ref == 'refs/heads/stage'
         run: |
           mkdir -p stage
           cp -r backend/ stage/
@@ -40,7 +40,7 @@ jobs:
           pm2 restart backend-stage 
 
     - name: Deploy to Production
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: github.ref == 'refs/heads/main'
         run: |
           mkdir -p production
           cp -r backend/ production/

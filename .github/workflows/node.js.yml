@@ -30,6 +30,7 @@ jobs:
       - name: Deploy to Stage
         if: github.ref == 'refs/heads/stage'
         run: |
+          cd ..
           mkdir -p stage
           cp -r /backend stage/
           cd stage
@@ -39,8 +40,8 @@ jobs:
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
         run: |
+          cd ..
           mkdir -p production
-          ls
           cp -r /backend production/
           cd production
           cp /env/.env.production .env

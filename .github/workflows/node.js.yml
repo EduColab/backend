@@ -1,13 +1,13 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: production
+name: node.js
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "stage"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "stage"]
 
 jobs:
   build:
@@ -29,4 +29,21 @@ jobs:
     - run: npm ci
     - run: npm i
     - run: npm run build-production 
-    - run: pm2 restart backend-production 
+
+    - name: Deploy to Stage
+        if: ${{ github.ref == 'refs/heads/stage' }}
+        run: |
+          mkdir -p stage
+          cp -r backend/ stage/
+          cd stage
+          cp /env/.env.stage .env
+          pm2 restart backend-stage 
+
+    - name: Deploy to Production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          mkdir -p production
+          cp -r backend/ production/
+          cd production
+          cp /env/.env.production .env
+          pm2 restart backend-production

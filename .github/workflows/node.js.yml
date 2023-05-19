@@ -29,5 +29,4 @@ jobs:
     - run: npm ci
     - run: npm i
     - run: npm run build-production 
-    - run: pm2 delete 0
-    - run: pm2 start ./build/index.js
+    - run: sudo pm2 restart 0

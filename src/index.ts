@@ -4,6 +4,8 @@ import express, { application, Application } from "express";
 
 import cors from "cors";
 import apiRoutes from "./routes/apiRoutes";
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const corsOptions={
     "origin": "*",

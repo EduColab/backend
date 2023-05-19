@@ -31,7 +31,7 @@ jobs:
         if: github.ref == 'refs/heads/stage'
         run: |
           mkdir -p stage
-          cp -r backend/ stage/
+          cp -r /backend stage/
           cd stage
           cp /env/.env.stage .env
           pm2 restart backend-stage 
@@ -40,7 +40,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           mkdir -p production
-          cp -r backend/ production/
+          cp -r /backend production/
           cd production
           cp /env/.env.production .env
           pm2 restart backend-production

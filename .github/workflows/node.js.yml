@@ -43,6 +43,6 @@ jobs:
           cd ..
           mkdir -p production
           cp -r backend production
-          cd production
+          cd production/backend
           cp /env/.env.production .env
           pm2 restart backend-production

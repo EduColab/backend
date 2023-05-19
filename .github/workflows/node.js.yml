@@ -28,5 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm i
-    - run: npm run build 
+    - run: npm run build-production 
     - run: pm2 start ./build/index.js

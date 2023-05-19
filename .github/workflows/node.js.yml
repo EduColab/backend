@@ -41,8 +41,8 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           cd ..
-          mkdir -p production
-          cp -r backend production
-          cd production/backend
-          cp /env/.env.production .env
+          sudo mkdir -p production
+          sudo cp -r backend production
+          sudo cd production/backend
+          sudo cp /env/.env.production .env
           pm2 restart backend-production

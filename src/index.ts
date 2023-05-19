@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 import express, { application, Application } from "express";
 
 import cors from "cors";
-
+import apiRoutes from "./routes/apiRoutes";
 
 const corsOptions={
     "origin": "*",
@@ -32,6 +32,7 @@ class Server {
         this.app.get('/', (req, res) => {
             res.send('Hello World');
         });
+        this.app.use('/api', apiRoutes)
     }
 
 

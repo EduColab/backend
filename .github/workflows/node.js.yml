@@ -45,5 +45,5 @@ jobs:
           sudo cp -r backend production
           cd production/backend
           ls
-          sudo cp /env/.env.production .env
+          sudo cp -r ./env/.env.production .env
           pm2 restart backend-production

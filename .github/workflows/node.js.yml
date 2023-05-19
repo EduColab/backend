@@ -41,6 +41,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           cd ..
+          ls
           mkdir -p production
           cp -r /backend production/
           cd production

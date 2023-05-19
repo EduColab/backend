@@ -31,11 +31,11 @@ jobs:
         if: github.ref == 'refs/heads/stage'
         run: |
           cd ../
-          mkdir -p stage
-          cp -r /backend stage/
-          cd stage
-          cp /env/.env.stage .env
-          pm2 restart backend-stage 
+          sudo mkdir -p stage
+          sudo cp -r backend stage
+          cd stage/backend
+          sudo cp -r ./env/.env.stage .env
+          pm2 restart backend-stage
 
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
@@ -44,6 +44,5 @@ jobs:
           sudo mkdir -p production
           sudo cp -r backend production
           cd production/backend
-          ls
           sudo cp -r ./env/.env.production .env
           pm2 restart backend-production

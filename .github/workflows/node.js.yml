@@ -40,6 +40,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           mkdir -p production
+          ls
           cp -r /backend production/
           cd production
           cp /env/.env.production .env

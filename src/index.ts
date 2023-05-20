@@ -5,6 +5,7 @@ import apiRoutes from "./routes/apiRoutes";
 import { sequelize } from './database'
 import * as dotenv from 'dotenv'
 import userRoutes from "./routes/userRoutes";
+import cursosRoutes from "./routes/cursosRoutes";
 dotenv.config()
 
 const corsOptions={
@@ -36,10 +37,9 @@ class Server {
         this.app.get('/', (req, res) => {
             res.send('Hello World');
         });
-        // this.app.use('/api', apiRoutes)
+        this.app.use('/api', apiRoutes)
         this.app.use('/api/users', userRoutes)
-        // this.app.use('/api/users', userRoutes)
-        // this.app.use('/api/users', userRoutes)
+        this.app.use('/api/courses', cursosRoutes)
     }
 
 

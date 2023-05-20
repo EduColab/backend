@@ -2,15 +2,10 @@ import { expressjwt } from "express-jwt"
 import jsonWebToken from 'jsonwebtoken'
 
 class Jwt {
-    public createToken(username: string, password: string, email: string, universidadId: number) {
+    public createToken(username: string, password: string, email: string) {
         const secret: string | any = process.env.JWT_SECRET
 
-        let tokenResponse: string | undefined = ''
-
-        jsonWebToken.sign({username, password, email, universidadId}, secret, (err: any, token: string | undefined) => {
-            console.log(token)
-            tokenResponse = token
-        })
+        const tokenResponse: string | undefined = jsonWebToken.sign({username, password, email}, secret)
 
         return tokenResponse
     }

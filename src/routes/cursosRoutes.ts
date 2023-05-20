@@ -1,19 +1,20 @@
 import { Router } from "express";
-import { apiController } from "../controllers/apiController";
+import { cursosController } from "../controllers/cursosController";
 
 
-class ApiRoutes {
+class CursosRoutes {
     public router: Router = Router();
     constructor(){
         this.config();
     }
     config():void{
-        this.router.get('/', apiController.init);
+        this.router.get('/', cursosController.getAll);
+        this.router.get('/options', cursosController.getAllOptions);
         // this.router.get('/:id', areasController.getOne);
         // this.router.post('/', areasController.create);
         // this.router.put('/:id', areasController.update);
         // this.router.delete('/:id', areasController.delete);
     }
 }
-const apiRoutes = new ApiRoutes();
-export default apiRoutes.router
+const cursosRoutes = new CursosRoutes();
+export default cursosRoutes.router

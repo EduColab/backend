@@ -7,7 +7,7 @@ class UserController {
     public async register(req: Request, res: Response) {
         const { username, password, email, universidadId } = req.body;
 
-        if (!(username && password && email && universidadId)) {
+        if (!(username && password && email)) {
             return res.status(400).send("All input is required");
         }
 
@@ -22,6 +22,14 @@ class UserController {
                 return res.status(200).send({ token });
             }
         });
+    }
+
+    public async login(req: Request, res: Response) {
+        const { password, email } = req.body;
+
+        if (!(password && email)) {
+            return res.status(400).send("All input is required");
+        }
     }
 
 

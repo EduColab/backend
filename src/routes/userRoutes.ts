@@ -8,7 +8,7 @@ class UserRoutes {
         this.config();
     }
     config():void{
-        // this.router.post('/login', userController.init);
+        this.router.post('/login', userController.login);
         this.router.post('/register', userController.register);
         // this.router.get('/:id', areasController.getOne);
         // this.router.post('/', areasController.create);

@@ -37,6 +37,8 @@ class Server {
         });
         // this.app.use('/api', apiRoutes)
         this.app.use('/api/users', userRoutes)
+        // this.app.use('/api/users', userRoutes)
+        // this.app.use('/api/users', userRoutes)
     }
 
 

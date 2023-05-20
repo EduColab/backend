@@ -1,14 +1,23 @@
 import { Request, Response } from "express";
+import Course from "../models/Course.";
 
 
 
 class CursosController {
     public async getAll(req: Request, res: Response) {
-        res.send([{id: 1, name: 'curso', idUniversidad: 1, idArea: 1, idCarrera: 1, idSemestre:1}])
+        await Course.findAll().then(response => {
+            if (response[0].dataValues.id) {
+                return res.status(200).send(response[0].dataValues)
+            }
+        })
     }
 
     public async getAllOptions(req: Request, res: Response) {
-        res.send([{id: 1, label: 'curso'}])
+        await Course.findAll({ attributes: ['id', 'name'] }).then(response => {
+            if (response[0].dataValues.id) {
+                return res.status(200).send(response[0].dataValues)
+            }
+        })
     }
     
 

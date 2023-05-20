@@ -23,8 +23,8 @@ class Jwt {
 
         try {
             const secret: string | any = process.env.JWT_SECRET
-
-            const decoded: object | any = jsonWebToken.verify(token, secret);
+            
+            const decoded: object | any = jsonWebToken.decode(token, secret);
 
             await User.findAll({where: {username: decoded.username, password: decoded.password, email: decoded.email}}).then(response => {
                 if (!response[0].dataValues.username) {   

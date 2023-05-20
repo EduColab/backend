@@ -1,7 +1,5 @@
 import { Router } from "express";
 import { apiController } from "../controllers/apiController";
-import { apiUniversityController } from "../controllers/apiUniversityController";
-import University from '../models/University';
 
 
 class ApiRoutes {
@@ -11,7 +9,6 @@ class ApiRoutes {
     }
     config():void{
         this.router.get('/', apiController.init);
-        this.router.get('/university', apiUniversityController.init)
         // this.router.get('/:id', areasController.getOne);
         // this.router.post('/', areasController.create);
         // this.router.put('/:id', areasController.update);

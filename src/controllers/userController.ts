@@ -27,6 +27,16 @@ class UserController {
         if (!(password && email)) {
             return res.status(400).send("All input is required");
         }
+
+        const userResponse: any = await User.findAll({ where: { email }})
+
+        await bcrypt.compare(password, userResponse[0].dataValues.password).then((response: boolean) => {
+            if (response) {
+                return res.status(200).send({ token: userResponse[0].dataValues.token })
+            } else {
+                return res.status(400).send("Invalid Credentials");
+            }
+        })
     }
 
 

@@ -1,6 +1,7 @@
 import { expressjwt } from "express-jwt"
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction, response } from "express"
 import jsonWebToken from 'jsonwebtoken'
+import User from "../models/User"
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -13,7 +14,7 @@ class Jwt {
         return tokenResponse
     }
 
-    public authenticate(req: Request | any, res: Response, next: NextFunction) {
+    public async authenticate(req: Request | any, res: Response, next: NextFunction) {
         const token = req.headers.authorization.replace('Bearer ', '');
 
         if (!token) {
@@ -23,7 +24,14 @@ class Jwt {
         try {
             const secret: string | any = process.env.JWT_SECRET
 
-            const decoded = jsonWebToken.verify(token, secret);
+            const decoded: object | any = jsonWebToken.verify(token, secret);
+
+            await User.findAll({where: {username: decoded.username, password: decoded.password, email: decoded.email}}).then(response => {
+                if (!response[0].dataValues.username) {   
+                    return res.status(401).json({ message: "Invalid token" });
+                }
+            })
+
 
             next();
         } catch (error) {

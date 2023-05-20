@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { cursosController } from "../controllers/cursosController";
+import { jwt } from "../libs/jwt";
 
 
 class CursosRoutes {
@@ -8,12 +9,8 @@ class CursosRoutes {
         this.config();
     }
     config():void{
-        this.router.get('/', cursosController.getAll);
-        this.router.get('/options', cursosController.getAllOptions);
-        // this.router.get('/:id', areasController.getOne);
-        // this.router.post('/', areasController.create);
-        // this.router.put('/:id', areasController.update);
-        // this.router.delete('/:id', areasController.delete);
+        this.router.get('/', jwt.authenticate, cursosController.getAll);
+        this.router.get('/options', jwt.authenticate, cursosController.getAllOptions);
     }
 }
 const cursosRoutes = new CursosRoutes();

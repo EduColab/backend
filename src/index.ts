@@ -1,9 +1,8 @@
 const bodyParser = require('body-parser')
-
 import express, { application, Application } from "express";
-
 import cors from "cors";
 import apiRoutes from "./routes/apiRoutes";
+import './database';
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -23,11 +22,13 @@ class Server {
     }
 
     config(): void {
+        
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(cors(corsOptions));
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(bodyParser.json({ limit: "50mb" }));
         this.app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
+       
     }
 
     routes(): void {
@@ -43,6 +44,7 @@ class Server {
             console.log('Server corriendo en', this.app.get('port'));
         });
     }
+
 }
 
 const server = new Server();

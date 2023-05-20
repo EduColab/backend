@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "colombi_educolab",
+    "password": "Educolab23",
+    "database": "colombi_educolab",
+    "host": "192.185.79.149",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

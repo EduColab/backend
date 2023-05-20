@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize-typescript';
 
 export const sequelize = new Sequelize({
-  database: 'colombi_educolab', // Reemplaza con el nombre de tu base de datos
+  database: process.env.DB_NAME, // Reemplaza con el nombre de tu base de datos
   dialect: 'mysql', // Reemplaza si estás utilizando otro tipo de base de datos
-  username: 'colombi_educolab', // Reemplaza con tu nombre de usuario de la base de datos
-  password: 'Educolab23', // Reemplaza con tu contraseña de la base de datos
-  host: '192.185.79.149',
+  username: process.env.DB_NAME, // Reemplaza con tu nombre de usuario de la base de datos
+  password: process.env.DB_PASWORD, // Reemplaza con tu contraseña de la base de datos
+  host: process.env.DB_HOST,
   models: [ '/models'], // Ruta al directorio de modelos
 });
 

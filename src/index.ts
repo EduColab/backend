@@ -2,7 +2,7 @@ const bodyParser = require('body-parser')
 import express, { application, Application } from "express";
 import cors from "cors";
 import apiRoutes from "./routes/apiRoutes";
-import './database';
+import { sequelize } from './database'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -42,6 +42,7 @@ class Server {
     start(): void {
         const server = this.app.listen(this.app.get('port'), () => {
             console.log('Server corriendo en', this.app.get('port'));
+            sequelize.sync();
         });
     }
 

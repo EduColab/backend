@@ -5,6 +5,7 @@ import express, { application, Application } from "express";
 import cors from "cors";
 import apiRoutes from "./routes/apiRoutes";
 import * as dotenv from 'dotenv'
+import userRoutes from "./routes/userRoutes";
 dotenv.config()
 
 const corsOptions={
@@ -34,7 +35,8 @@ class Server {
         this.app.get('/', (req, res) => {
             res.send('Hello World');
         });
-        this.app.use('/api', apiRoutes)
+        // this.app.use('/api', apiRoutes)
+        this.app.use('/api/users', userRoutes)
     }
 
 

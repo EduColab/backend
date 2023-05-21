@@ -2,31 +2,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database';
 
-// id: { 
-//     allowNull: false,
-//     type: Sequelize.INTEGER,
-//     autoIncrement: true,
-//     primaryKey: true
-//   },
-//   name: {
-//     type: Sequelize.STRING
-//   },
-//   universityId : {
-//     type: Sequelize.INTEGER,
-//     allowNull: false,
-//     references: {
-//       model: 'universities',
-//       key: 'id'
-//     },
-//     onUpdate: 'CASCADE',
-//     onDelete: 'CASCADE'
-//   },
-//   description: {
-//     type: Sequelize.STRING
-//   },
-//   courses_related: {
-//     type: Sequelize.STRING
-//   }
 
 export interface ProgramsAttributes {
     id: number | undefined;

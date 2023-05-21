@@ -39,6 +39,19 @@ class UserController {
         })
     }
 
+    public async getByUser(req: Request, res: Response) {
+        try {
+            const universities = await User.findOne({
+                where: {
+                    username: req.params.username
+                }
+            }); 
+            res.json(universities);
+        } catch(error) {
+            res.status(500).json({error:"Internal Server Error"})
+        }
+    }
+
 
 }
 export const userController = new UserController();

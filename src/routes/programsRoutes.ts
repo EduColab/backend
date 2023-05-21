@@ -11,6 +11,7 @@ class ProgramsRoutes {
     config():void{
         this.router.get('/', jwt.authenticate , programsController.getAll);
         this.router.get('/options', jwt.authenticate, programsController.getAll);
+        this.router.get('/id/:id', jwt.authenticate ,programsController.getById);
     }
 }
 const programsRoutes = new ProgramsRoutes();

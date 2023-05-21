@@ -6,8 +6,8 @@ import { sequelize } from './database'
 import * as dotenv from 'dotenv'
 import userRoutes from "./routes/userRoutes";
 import cursosRoutes from "./routes/cursosRoutes";
-import universidadesRoutes from "./routes/universidadesRoutes";
 import programsRoutes from "./routes/programsRoutes";
+import universidadesRoutes from "./routes/universidadesRoutes";
 dotenv.config()
 
 const corsOptions={

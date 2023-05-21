@@ -11,41 +11,41 @@ import { sequelize } from '../database';
 //   name: {
 //     type: Sequelize.STRING
 //   },
-//   programId : {
+//   universityId : {
 //     type: Sequelize.INTEGER,
 //     allowNull: false,
 //     references: {
-//       model: 'programs',
+//       model: 'universities',
 //       key: 'id'
 //     },
 //     onUpdate: 'CASCADE',
 //     onDelete: 'CASCADE'
 //   },
+//   description: {
+//     type: Sequelize.STRING
+//   },
 //   courses_related: {
 //     type: Sequelize.STRING
-//   },
-//   programs_related: {
-//     type: Sequelize.STRING
-//   },
+//   }
 
-export interface SubjectAttributes {
+export interface ProgramsAttributes {
     id: number | undefined;
     name: string | undefined;
-    programId: number | undefined;
+    universityId: number | undefined;
+    description: string | undefined;
     courses_related: string | undefined;
-    programs_related: string | undefined;
 }
 
-class Subject extends Model<SubjectAttributes> implements SubjectAttributes {
+class Programs extends Model<ProgramsAttributes> implements ProgramsAttributes {
     public id!: number | undefined;
     public name: string | undefined;
-    public programId: number | undefined;
+    public universityId: number | undefined;
+    public description: string | undefined;
     public courses_related: string | undefined;
-    public programs_related: string | undefined;
   // Otros atributos de la universidad
 }
 
-Subject.init(
+Programs.init(
   {
       id: {
           type: DataTypes.INTEGER,
@@ -56,25 +56,25 @@ Subject.init(
           type: DataTypes.STRING,
           allowNull: false,
       },
-      programId: {
+      universityId: {
           type: DataTypes.NUMBER,
           allowNull: false,
       },
-      courses_related: {
+      description: {
           type: DataTypes.STRING,
           allowNull: false,
       },
-      programs_related: {
+      courses_related: {
           type: DataTypes.STRING,
           allowNull: false,
       }
   },
   {
     sequelize,
-    modelName: 'Subject',
-    tableName: 'subjects',
+    modelName: 'Programs',
+    tableName: 'programs',
     timestamps: false,
   }
 );
 
-export default Subject;
+export default Programs;

@@ -6,8 +6,6 @@ import { sequelize } from './database'
 import * as dotenv from 'dotenv'
 import userRoutes from "./routes/userRoutes";
 import cursosRoutes from "./routes/cursosRoutes";
-<<<<<<<<< Temporary merge branch 1
-import subjectsRoutes from "./routes/subjectsRoutes";
 import universidadesRoutes from "./routes/universidadesRoutes";
 import programsRoutes from "./routes/programsRoutes";
 dotenv.config()

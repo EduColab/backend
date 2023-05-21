@@ -6,8 +6,8 @@ import { sequelize } from './database'
 import * as dotenv from 'dotenv'
 import userRoutes from "./routes/userRoutes";
 import cursosRoutes from "./routes/cursosRoutes";
-import subjectsRoutes from "./routes/subjectsRoutes";
 import universidadesRoutes from "./routes/universidadesRoutes";
+import programsRoutes from "./routes/programsRoutes";
 dotenv.config()
 
 const corsOptions={
@@ -42,8 +42,8 @@ class Server {
         this.app.use('/api', apiRoutes)
         this.app.use('/api/users', userRoutes)
         this.app.use('/api/courses', cursosRoutes)
-        this.app.use('/api/subjects', subjectsRoutes)
         this.app.use('/api/universities', universidadesRoutes)
+        this.app.use('/api/programs', programsRoutes)
     }
 
 

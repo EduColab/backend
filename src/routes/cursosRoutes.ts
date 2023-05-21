@@ -11,6 +11,7 @@ class CursosRoutes {
     config():void{
         this.router.get('/', jwt.authenticate, cursosController.getAll);
         this.router.get('/options', jwt.authenticate, cursosController.getAllOptions);
+        this.router.get('/id/:id', jwt.authenticate ,cursosController.getById);
     }
 }
 const cursosRoutes = new CursosRoutes();

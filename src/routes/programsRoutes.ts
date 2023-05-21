@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { programController } from "../controllers/programsController";
+import { programsController } from "../controllers/programsController";
 import { jwt } from "../libs/jwt";
 
 
@@ -9,8 +9,8 @@ class ProgramsRoutes {
         this.config();
     }
     config():void{
-        this.router.get('/', jwt.authenticate ,programController.getAll);
-        this.router.get('/options', jwt.authenticate ,programController.getAllOptions);
+        this.router.get('/', jwt.authenticate , programsController.getAll);
+        this.router.get('/options', jwt.authenticate, programsController.getAll);
     }
 }
 const programsRoutes = new ProgramsRoutes();

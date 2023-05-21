@@ -12,6 +12,19 @@ class UniversidadController {
         }
     }
 
+    public async getById(req: Request, res: Response) {
+        try {
+            const universities = await University.findOne({
+                where: {
+                    id: req.params.id
+                }
+            }); 
+            res.json(universities);
+        } catch(error) {
+            res.status(500).json({error:"Internal Server Error"})
+        }
+    }
+
     public async getAllOptions(req: Request, res: Response) {
         await University.findAll({ attributes: ['id','name']}).then(response =>{
             if(response[0].dataValues.id) {

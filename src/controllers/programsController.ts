@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import Course from "../models/Course.";
+import Programs from "../models/Programs";
 
-
-
-class CursosController {
+class ProgramsController {
     public async getAll(req: Request, res: Response) {
-        await Course.findAll().then(response => {
+        await Programs.findAll().then(response => {
+            console.log(response)
             if (response) {
                 return res.status(200).send(response)
             }
@@ -14,7 +13,7 @@ class CursosController {
 
     public async getById(req: Request, res: Response) {
         try {
-            const program = await Course.findOne({
+            const program = await Programs.findOne({
                 where: {
                     id: req.params.id
                 }
@@ -26,14 +25,13 @@ class CursosController {
     }
 
     public async getAllOptions(req: Request, res: Response) {
-        await Course.findAll({ attributes: ['id', 'name'] }).then(response => {
+        await Programs.findAll({ attributes: ['id', 'name'] }).then(response => {
             if (response) {
                 return res.status(200).send(response)
             }
         })
     }
-    
 
 
 }
-export const cursosController = new CursosController();
+export const programsController = new ProgramsController();

@@ -13,6 +13,7 @@ class CursosRoutes {
         this.router.get('/options', jwt.authenticate, cursosController.getAllOptions);
         this.router.get('/id/:id', jwt.authenticate ,cursosController.getById);
 
+        this.router.get('/typed', jwt.authenticate ,cursosController.getOneCourse);
         this.router.post('/', jwt.authenticate, cursosController.store);
     }
 }

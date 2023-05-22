@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import University from "../models/University";
+import UniversityCourse from "../models/UniversityCourse";
 
 
 class UniversidadController {
@@ -20,6 +21,19 @@ class UniversidadController {
                 }
             }); 
             res.json(universities);
+        } catch(error) {
+            res.status(500).json({error:"Internal Server Error"})
+        }
+    }
+
+    public async getCoursesByUniversityId(req: Request, res: Response) {
+        try {
+            const program = await UniversityCourse.findAll({
+                where: {
+                    universityId: req.params.id
+                }
+            }); 
+            res.json(program);
         } catch(error) {
             res.status(500).json({error:"Internal Server Error"})
         }

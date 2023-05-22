@@ -2,7 +2,7 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database';
 
-export interface CourseAttributes {
+export interface UniversityCourseAttributes {
     id: number | undefined;
     name: string | undefined;
     universityId: number | undefined;
@@ -11,7 +11,7 @@ export interface CourseAttributes {
     subjects_related: string | undefined;
 }
 
-class Course extends Model<CourseAttributes> implements CourseAttributes {
+class UniversityCourse extends Model<UniversityCourseAttributes> implements UniversityCourseAttributes {
     public id!: number | undefined;
     public name: string | undefined;
     public universityId: number | undefined;
@@ -21,7 +21,7 @@ class Course extends Model<CourseAttributes> implements CourseAttributes {
   // Otros atributos de la universidad
 }
 
-Course.init(
+UniversityCourse.init(
   {
       id: {
           type: DataTypes.INTEGER,
@@ -51,10 +51,10 @@ Course.init(
   },
   {
     sequelize,
-    modelName: 'Course',
+    modelName: 'UniversityCourse',
     tableName: 'university_courses',
     timestamps: false,
   }
 );
 
-export default Course;
+export default UniversityCourse;

@@ -36,6 +36,44 @@ class CursosController {
         }
     }
 
+    
+    public async getOneCourse(req: Request, res: Response) {
+        const queryStr = req.query.type;
+        
+        let noData=true;
+        try {
+            if(queryStr=="community") {
+                const course = await CommunityCourse.findOne({
+                    where: {
+                        id: req.query.id?.toString()
+                    }
+                }); 
+                noData=false;
+                if(course==null)
+                    res.status(200).json("No data");
+                else
+                    res.json(course);
+            }
+            
+            if(queryStr=="university") {
+                const course = await UniversityCourse.findOne({
+                    where: {
+                        id: req.query.id?.toString()
+                    }
+                }); 
+                noData=false;
+                if(course==null)
+                    res.status(200).json("No data");
+                else
+                    res.json(course);
+            }
+            if(noData===true)
+                res.status(200).json("No data");
+        } catch(error) {
+            res.status(500).json({error:"Internal Server Error"})
+        }
+    }
+
     public async getAllOptions(req: Request, res: Response) {
         await UniversityCourse.findAll({ attributes: ['id', 'name'] }).then(response => {
             if (response) {

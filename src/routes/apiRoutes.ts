@@ -9,6 +9,7 @@ class ApiRoutes {
     }
     config():void{
         this.router.get('/', apiController.init);
+        this.router.get('/finder', apiController.finder);
         // this.router.get('/:id', areasController.getOne);
         // this.router.post('/', areasController.create);
         // this.router.put('/:id', areasController.update);

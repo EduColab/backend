@@ -12,6 +12,8 @@ class CursosRoutes {
         this.router.get('/', jwt.authenticate, cursosController.getAll);
         this.router.get('/options', jwt.authenticate, cursosController.getAllOptions);
         this.router.get('/id/:id', jwt.authenticate ,cursosController.getById);
+
+        this.router.post('/', jwt.authenticate, cursosController.store);
     }
 }
 const cursosRoutes = new CursosRoutes();

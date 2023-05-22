@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import Course from "../models/Course.";
-
+import UniversityCourse from "../models/UniversityCourse";
+import CommunityCourse from "../models/CommunityCourse";
 
 
 class CursosController {
     public async getAll(req: Request, res: Response) {
-        await Course.findAll().then(response => {
+        await UniversityCourse.findAll().then(response => {
             if (response) {
                 return res.status(200).send(response)
             }
@@ -14,7 +14,7 @@ class CursosController {
 
     public async getById(req: Request, res: Response) {
         try {
-            const program = await Course.findOne({
+            const program = await UniversityCourse.findOne({
                 where: {
                     id: req.params.id
                 }
@@ -26,11 +26,42 @@ class CursosController {
     }
 
     public async getAllOptions(req: Request, res: Response) {
-        await Course.findAll({ attributes: ['id', 'name'] }).then(response => {
+        await UniversityCourse.findAll({ attributes: ['id', 'name'] }).then(response => {
             if (response) {
                 return res.status(200).send(response)
             }
         })
+    }
+
+    public async store(req: Request, res: Response) {
+
+        const { name, description, type, owner } = req.body;
+
+        if (!(name && description && type && owner)) {
+            return res.status(400).send("All input is required");
+        }
+        if(type=="community"){
+            const newCourse = {
+                name: name,
+                description: description,
+                email: owner,
+                programs_related:"[]",
+                subjects_related:"[]"
+            };
+            let courseCreated = await CommunityCourse.create(newCourse);
+            res.status(200).send(courseCreated);
+        }
+        if(type=="university") {
+            const newCourse = {
+            name: name,
+            description: description,
+            universityId: owner,
+            programs_related:"[]",
+            subjects_related:"[]"
+          };
+          let courseCreated = await UniversityCourse.create(newCourse);
+          res.status(200).send(courseCreated);
+        }
     }
     
 

@@ -5,11 +5,22 @@ import CommunityCourse from "../models/CommunityCourse";
 
 class CursosController {
     public async getAll(req: Request, res: Response) {
-        await UniversityCourse.findAll().then(response => {
-            if (response) {
-                return res.status(200).send(response)
-            }
-        })
+        const query = req.query.type;
+        
+        if(query=="community") {
+        
+            await CommunityCourse.findAll().then(response => {
+                if (response) {
+                    return res.status(200).send(response)
+                }
+            })
+        } else if(query=="university" || !query) {
+            await UniversityCourse.findAll().then(response => {
+                if (response) {
+                    return res.status(200).send(response)
+                }
+            })
+        }
     }
 
     public async getById(req: Request, res: Response) {
